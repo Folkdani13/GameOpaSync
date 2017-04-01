@@ -4,12 +4,14 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
+
 public class Score : MonoBehaviour {
 
     public Text scoreText;
     public Text timerText;
     public int ballValue;
-    private int score;
+    public int score;
+    public string test;
     public float timeLeft;
  
 
@@ -33,23 +35,30 @@ public class Score : MonoBehaviour {
         }
     } 
 
-    void OnTriggerEnter2D()
+    void OnTriggerEnter2D(Collider2D target)
     {
-        score += ballValue;
-        timeLeft += 2;
-        UpdateScoreandTxt();
-    }
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        if(collision.gameObject.tag == "Bomb")
+        test = target.tag;
+        switch (test)
         {
-            score -= ballValue * 2;
-            UpdateScoreandTxt();
-            Destroy(GameObject.FindGameObjectWithTag("Bomb"));
+            case "Bomb":
+                score -= ballValue*2;
+                timeLeft -= 2;
+                UpdateScoreandTxt();
+                break;
+            case "Ball":
+                score += ballValue*20;
+                timeLeft += 2;
+                UpdateScoreandTxt();
+                break;
+            case "Gesicht":
+                score += ballValue*10;
+                timeLeft += 5;
+                UpdateScoreandTxt();
+                break;
         }
-
+        
     }
-
+    
     void UpdateScoreandTxt()
     {
         scoreText.text = "Score: \n" + score;

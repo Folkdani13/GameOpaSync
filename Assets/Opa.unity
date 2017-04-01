@@ -122,6 +122,7 @@ MonoBehaviour:
   items:
   - {fileID: 1854129235104418, guid: 267bd1f8c41db2b43a43cd1db14d043c, type: 2}
   - {fileID: 1907851416949094, guid: 48a522d2f6b12fa48b91679435a85db8, type: 2}
+  - {fileID: 1496236100872960, guid: af3dfda053dcc374b8f64971077fd71d, type: 2}
   timeLeft: 10
   playing: 0
   kubelcontroller: {fileID: 1411494323}
@@ -1440,6 +1441,8 @@ MonoBehaviour:
   scoreText: {fileID: 1364467953}
   timerText: {fileID: 537882064}
   ballValue: 1
+  score: 0
+  test: 
   timeLeft: 10
 --- !u!1 &1739639377
 GameObject:
