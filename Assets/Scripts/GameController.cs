@@ -9,7 +9,6 @@ public class GameController : MonoBehaviour {
     private float maxWidth;
     private int score;
     private string testc;
-    public float timeLeft;
     public bool playing;
     public KubelController kubelcontroller;
     public GameObject gameOverText;
@@ -50,14 +49,35 @@ public class GameController : MonoBehaviour {
         yield return new WaitForSeconds(1.0f);
         playing = true;
 
+       /* foreach (GameObject objects in GameObject.FindGameObjectsWithTag("Ball"))
+        {
+            if (objects.name == "Bomb")
+            {
+                items = items.remove("Bomb");
+            }
+        }
+       // GameObject[] objects = GameObject.FindGameObjectsWithTag("Ball");
+       
+
+        List<GameObject> list = new List<GameObject>(items);
+        list.Remove(GameObject.FindGameObjectsWithTag("Ball");
+        */
+
+
+
+
         while (GameObject.Find("Kubel").GetComponent<Score>().timeLeft > 0)
         {
+            GameObject[] objects = GameObject.FindGameObjectsWithTag("Ball");
+           // GameObject[] c = items.(objects).ToArray();
             score = GameObject.Find("Kubel").GetComponent<Score>().score;
             GameObject ball = items[Random.Range(0, items.Length)];
+            
             Vector3 spawnPosition = new Vector3(Random.Range(-maxWidth, maxWidth), transform.position.y, 0.0f);
             Quaternion spawnRotation = Quaternion.identity;
             if (score < 50)
-            {                
+            {
+                
                 Instantiate(ball, spawnPosition, spawnRotation);
                 yield return new WaitForSeconds(Random.Range(2.0f, 3.0f));
             }

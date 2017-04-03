@@ -9,6 +9,8 @@ public class Score : MonoBehaviour {
 
     public Text scoreText;
     public Text timerText;
+    public Text lifeText;
+    public int death;
     public int ballValue;
     public int score;
     public string test;
@@ -18,7 +20,8 @@ public class Score : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         score = 0;
-        UpdateScoreandTxt();
+        UpdateLife();
+        UpdateScoreandTime();
         
 	}
 
@@ -31,7 +34,7 @@ public class Score : MonoBehaviour {
             {
                 timeLeft = 0;
             }
-            UpdateScoreandTxt();
+            UpdateScoreandTime();
         }
     } 
 
@@ -43,26 +46,54 @@ public class Score : MonoBehaviour {
             case "Bomb":
                 score -= ballValue*2;
                 timeLeft -= 2;
-                UpdateScoreandTxt();
+                UpdateScoreandTime();
                 break;
             case "Ball":
                 score += ballValue*20;
-                timeLeft += 2;
-                UpdateScoreandTxt();
+                UpdateScore();
                 break;
             case "Gesicht":
-                score += ballValue*10;
                 timeLeft += 5;
-                UpdateScoreandTxt();
+                UpdateTime();
+                break;
+            case "Skull":
+                if (death == 1)
+                {
+                    death -= 1;
+                    UpdateLife();
+                    timeLeft = 0;
+                    UpdateTime();
+                }
+                else
+                {
+                    death -= 1;
+                    UpdateLife();
+                }
                 break;
         }
         
     }
     
-    void UpdateScoreandTxt()
+    void UpdateScoreandTime()
     {
         scoreText.text = "Score: \n" + score;
         timerText.text = "Time Left: \n" + Mathf.RoundToInt(timeLeft);
 
     }
+    void UpdateTime()
+    {
+        timerText.text = "Time Left: \n" + Mathf.RoundToInt(timeLeft);
+
+    }
+    void UpdateScore()
+    {
+        scoreText.text = "Score: \n" + score;
+
+    }
+    void UpdateLife()
+    {
+        lifeText.text = "Leben: \n" + death;
+
+    }
 }
+
